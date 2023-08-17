@@ -28,7 +28,7 @@ export const PlayerPage: React.FC = () => {
     } satisfies PlayerInputs,
     resolver,
   });
-  const { fields, append } = useFieldArray({ control, name: "player" });
+  const { fields, append, remove } = useFieldArray({ control, name: "player" });
 
   return (
     <div className="p-4">
@@ -51,20 +51,18 @@ export const PlayerPage: React.FC = () => {
             </li>
           ))}
         </ol>
-        <Button
-          label="Add Player"
-          onClick={(ev) => {
-            ev.stopPropagation();
-            append({ name: "" });
-          }}
-        />
 
-        <button
-          type="submit"
-          className="py-2 px-4 w-full bg-slate-500 rounded shadow-slate-500"
-        >
+        <div className="flex flex-row gap-2">
+          <Button variant="outline" onClick={() => remove(fields.length - 1)}>
+            - Remove Player
+          </Button>
+          <Button variant="outline" onClick={() => append({ name: "" })}>
+            + Add Player
+          </Button>
+        </div>
+        <Button variant="primary" type="submit">
           Start Game
-        </button>
+        </Button>
       </form>
     </div>
   );
