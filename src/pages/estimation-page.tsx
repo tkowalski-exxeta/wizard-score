@@ -1,7 +1,9 @@
 import React from "react";
-import { useAppSelector } from "../model";
+import { Button } from "../components/button";
+import { restartGame, useAppDispatch, useAppSelector } from "../model";
 
 export const EstimationPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const player = useAppSelector((root) => root.player);
   return (
     <div>
@@ -11,6 +13,7 @@ export const EstimationPage: React.FC = () => {
           <li key={p._id}>{p.name}</li>
         ))}
       </ol>
+      <Button label="Reset Game" onClick={() => dispatch(restartGame())} />
     </div>
   );
 };

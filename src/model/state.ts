@@ -22,6 +22,7 @@ export function assertFinished(
 export type UUID = ReturnType<typeof crypto.randomUUID>;
 
 export interface PlayerInput {
+  // _id: UUID;
   name: string;
 }
 
